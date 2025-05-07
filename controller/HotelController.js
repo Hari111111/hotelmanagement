@@ -29,7 +29,7 @@ const getAll= async(req,res)=>{
 }
 const getOne = async(req,res)=>{
     const id = req.params.id;
-    const hotel= Hotel.findByPk(id);
+    const hotel= await Hotel.findByPk(id);
     return res.json({hotel});
 }
 

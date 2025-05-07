@@ -6,6 +6,8 @@ const hotelRoutes = require('./routes/hotel');
 const roomRoutes = require('./routes/room');
 const helmet  = require("helmet");
 const cors = require("cors");
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require("./swagger");
 
 const app = express();
 
@@ -15,10 +17,15 @@ const corsOption={
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   credentials: true
 
+  
 }
+
 app.use(cors(corsOption))
 
 app.use('/uploads', express.static('uploads'))
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 app.use(express.json());
 
